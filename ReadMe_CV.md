@@ -1,4 +1,4 @@
-**Read ME For ALFNet and CSP code** All this files were used in CSP code as well.
+**Read ME For ALFNet and CSP code** All this files were used in CSP https://github.com/jasmeet12/CSP code as well.
 Markup: *For CrowdHuman dataset file https://github.com/jasmeet12/ALFNet/blob/master/resize_annotation.py is used to resize the images and translate the ground box to resized images.
 
   *Please make sure crowdData validation and annotation is copied to crowdHuman/val/
