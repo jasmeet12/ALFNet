@@ -204,11 +204,11 @@ class Model_2step(Base_model):
 		np.savetxt(res_file, np.array(res_all), fmt='%.4f')
 		print 'Test time: %.4f s' % (time.time() - start_time)
 		
-	def demo(self,opt, val_data, weight_path, out_path):
+	def demo(self,opt, val_data, weight_path, out_path,foldername):
 		self.model_all.load_weights(weight_path, by_name=True)
 		print 'load weights from {}'.format(weight_path)
 		for f in range(len(val_data)):
-			img_name = os.path.join('data/examples/',val_data[f])
+			img_name = os.path.join('data/examples/{}'.format(foldername),val_data[f])
 			if not img_name.lower().endswith(('.jpg', '.png')):
 				continue
 			print(img_name)

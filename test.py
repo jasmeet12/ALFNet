@@ -7,6 +7,7 @@ from keras_alfnet import config
 C = config.Config()
 os.environ["CUDA_VISIBLE_DEVICES"] = '2'
 
+isCrownHuman = True
 if C.network=='resnet50':
     w_path = 'data/models/city_res50_%sstep.hdf5' % (C.steps)
 elif C.network=='mobilenet' and C.steps in [1,2]:
@@ -20,7 +21,8 @@ if not os.path.exists(out_path):
     os.makedirs(out_path)
 
 # get the test data
-cache_path = 'data/cache/cityperson/val'
+folder = 'crowdHuman' if isCrownHuman == True else 'cityperson'
+cache_path = 'data/cache/{}/val'.format(folder)
 with open(cache_path, 'rb') as fid:
 	val_data = cPickle.load(fid)
 num_imgs = len(val_data)
