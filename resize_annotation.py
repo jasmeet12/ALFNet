@@ -10,8 +10,8 @@ desired_sizeH, desired_sizeW = C.random_crop
 
 
 root_dir = 'data/crowdHuman/val'
-all_img_path = os.path.join(root_dir, 'test')
-out = os.path.join(root_dir, 'tt')
+all_img_path = os.path.join(root_dir, 'Images')
+out = os.path.join(root_dir, 'Images')
 anno_path = os.path.join(root_dir, 'annotation_val.odgt')
 annos = readFile(anno_path,'val')
 i = 0
@@ -20,7 +20,7 @@ for anno in annos:
 
     img = anno['imgname']
 
-    im_pth = os.path.join(all_img_path, img)
+    im_pth = os.path.join(root_dir, img)
     out_path = os.path.join(out, img)
     im = cv2.imread(im_pth)
     if im is None:
@@ -72,6 +72,7 @@ for anno in annos:
     w_r = float(float(new_size[1]) / float(old_size[1]))
     h_r = float(float(new_size[0]) / float(old_size[0]))
 
+## Translate annotation to new size
     for j in range(len(gts)):
 
         label, x1, y1, w, h = gts[j][:5]
@@ -99,7 +100,7 @@ for anno in annos:
         yv1_n = yv1_n + top
 
         gts[j][6:] = [xv1_n, yv1_n, wv_n, hv_n]
-        cv2.rectangle(new_im, (xv1_n, yv1_n), (xv1_n + wv_n, yv1_n + hv_n), (0, 255, 0), 3);
+        # cv2.rectangle(new_im, (xv1_n, yv1_n), (xv1_n + wv_n, yv1_n + hv_n), (0, 255, 0), 3);
 
     cv2.imwrite(out_path, new_im)
     print(out_path)
